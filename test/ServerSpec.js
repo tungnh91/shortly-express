@@ -13,16 +13,18 @@ var port = 4568;
 // Remove the 'x' from beforeEach block when working on
 // authentication tests.
 /************************************************************/
-var beforeEach = function() {};
+//var beforeEach = function() {};
+// what is this doing here??? I like to know!
 /************************************************************/
 
 
 describe('', function() {
-  var db = mysql.createConnection({
-    user: 'root',
-    password: '',
-    database: 'shortly'
-  });
+  var db;
+  // var db = mysql.createConnection({
+  //   user: 'root',
+  //   password: '',
+  //   database: 'shortly'
+  // });
   var server;
 
   var clearDB = function(connection, tablenames, done) {
@@ -132,7 +134,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Account Creation:', function() {
+  describe('Account Creation:', function() {
 
     it('signup creates a new user record', function(done) {
       var options = {
