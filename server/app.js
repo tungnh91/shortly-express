@@ -4,13 +4,15 @@ var path = require('path');
 var util = require('./lib/utility');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
-
+var cookieParser = require('../server/middleware/cookieParser.js')
+var sessionParser = require('../server/middleware/sessionParser.js');
 var Users = require('./models/user');
 var Links = require('./models/link');
 var Sessions = require('./models/session');
 var Click = require('./models/click');
 
 var app = express();
+app.use(cookieParser);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -102,10 +104,10 @@ app.post('/signup', function(req, res) {
 });
 
 
-app.post('/login', function(req, res){
+app.post('/login', function(req, res) {
   Users.GET(req.body, function(err, data, length) {
     if (err) {
-      console.log("this is the error case!!!!! ", err);
+      console.log('this is the error case!!!!! ', err);
       res.writeHead(303, {location: '/login'});
       res.send();
     } else {
@@ -119,9 +121,7 @@ app.post('/login', function(req, res){
       }
     }
   });
-
-
-})
+});
 
 
 /************************************************************/
@@ -131,6 +131,7 @@ app.post('/login', function(req, res){
 /************************************************************/
 
 app.get('/*', function(req, res, next) {
+
   var code = req.params[0];
   var link;
   return Links.getOne({ type: 'code', data: code })
@@ -157,6 +158,7 @@ app.get('/*', function(req, res, next) {
 });
 
 app.use(function(err, req, res, next) {
+
   if (!err.error) {
     return res.sendStatus(err.status);
   }

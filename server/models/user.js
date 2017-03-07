@@ -6,6 +6,7 @@ var utils = require('../lib/utility');
 module.exports = {
 
   GET: function(params, callback) {
+
     // if(req.body)
     var queryUser = `select * from users where username = "${params.username}";`;
     // console.log(')))))))((((((((((row((((()))))))))))))))', queryUser);
@@ -38,6 +39,7 @@ module.exports = {
   },
 
   POST: function(params, callback) {
+
     // console.log(" is this the problem???? tell me john ====>  0  <====");
     var salt = utils.generateSalt();
     // console.log('(((((((((((((())))))))))))))',salt);
