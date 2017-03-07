@@ -13,9 +13,14 @@ module.exports = {
   },
 
   POST: function(params, callback){
-    console.log('we got a post request===================', params);
     var queryString = 'INSERT IGNORE INTO users SET ?';
-    db.query(queryString, params, function(err, results){
+    var temp = utils.randomizePassword(params.password);
+    var newParams = {
+      username: params.username,
+      password: temp
+    }
+    console.log("this is newParams ===================>  ", newParams, "\n");
+    db.query(queryString, newParams, function(err, results){
       callback(err, results);
     });
   }

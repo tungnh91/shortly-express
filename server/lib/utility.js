@@ -20,4 +20,19 @@ exports.isValidUrl = function(url) {
 /************************************************************/
 // Add additional utility functions below
 /************************************************************/
+// >>>>>> Tried to implement real salt, but failed
+// exports.genRandomString = function(length){
+//   console.log('this is genRandomString================>>>>>>>>> <<<<<<<', length);
+//   console.log("console logging: ====>>>>>>>>",crypto.randomBytes(Math.ceil(length / 2)), 'type ooooooof', typeof crypto.randomBytes(Math.ceil(length / 2)) );
+//   return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+// };
 
+exports.randomizePassword = function(str) {
+  console.log("why does it not work????/");
+  var hash = crypto.createHash('md5')
+                   .update(str)
+                   .digest('hex');
+  // return randomized Password
+  console.log("llllllllllllll", hash);
+  return hash;
+};
