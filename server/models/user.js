@@ -13,20 +13,25 @@ module.exports = {
   },
 
   POST: function(params, callback) {
-    console.log(" is this the problem???? tell me john ====>  0  <====");
+    // console.log(" is this the problem???? tell me john ====>  0  <====");
     var salt = utils.generateSalt();
-    console.log('(((((((((((((())))))))))))))',salt);
-    var queryString = 'INSERT IGNORE INTO users SET ?';
-    console.log('******************************', params);
+    // console.log('(((((((((((((())))))))))))))',salt);
+    var queryString = 'INSERT INTO users SET ?';
+    // console.log('******************************', params);
     var temp = utils.randomizePassword(params.password, salt);
     var newParams = {
       username: params.username,
       password: temp,
       salt: salt
     };
-    console.log('this is newParams ===================>  ', newParams, '\n');
+    // console.log('this is newParams ===================>  ', newParams, '\n');
     db.query(queryString, newParams, function(err, results) {
-      callback(err, results);
+      console.log("testing results: ", results);
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
     });
   }
 

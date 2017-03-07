@@ -87,12 +87,15 @@ function(req, res, next) {
 // Write your authentication routes here
 /************************************************************/
 app.post('/signup', function(req, res) {
-  console.log("first step!!");
   Users.POST(req.body, function(err, data) {
     if (err) {
-      throw err;
+      console.log("this is the error case!!!!! ", err);
+      res.writeHead(303, {location: '/signup'});
+      res.send();
     } else {
-      res.status(201).send();
+      console.log("this is the success case!!!!! ", data);
+      res.writeHead(201, {location: '/'});
+      res.send();
     }
   });
 });
