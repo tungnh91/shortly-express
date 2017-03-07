@@ -1,4 +1,5 @@
 var express = require('express');
+var router = express.Router();
 var path = require('path');
 var util = require('./lib/utility');
 var partials = require('express-partials');
@@ -21,17 +22,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files from ../public directory
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/', 
+app.get('/',
 function(req, res) {
   res.render('index');
 });
 
-app.get('/create', 
+app.get('/create',
 function(req, res) {
   res.render('index');
 });
 
-app.get('/links', 
+app.get('/links',
 function(req, res, next) {
   Links.getAll()
   .then(function(results) {
@@ -43,7 +44,7 @@ function(req, res, next) {
   });
 });
 
-app.post('/links', 
+app.post('/links',
 function(req, res, next) {
   var uri = req.body.url;
 
@@ -85,7 +86,17 @@ function(req, res, next) {
 /************************************************************/
 // Write your authentication routes here
 /************************************************************/
-
+app.post('/signup', function(req, res) {
+  // console.log('------------------------------------request' , req.body);
+  Users.POST(req.body, function(err, data){
+    if (err) {
+      throw err;
+    } else {
+      console.log(data);
+      res.status(201).send();
+    }
+  });
+})
 
 
 /************************************************************/

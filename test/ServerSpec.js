@@ -63,7 +63,6 @@ describe('', function() {
       /* Empties the db table before each test so that multiple tests
        * (or repeated runs of the tests) won't screw each other up: */
       clearDB(db, tablenames, function() {
-        // console.log("==================> what is db?", db);
         server = app.listen(port, done);
       });
     });
@@ -73,7 +72,6 @@ describe('', function() {
   describe('Database Schema:', function() {
     it('contains a users table', function(done) {
       var queryString = 'SELECT * FROM users';
-      console.log("==================> what is db?", db);
       db.query(queryString, function(err, results) {
         if (err) { return done(err); }
 
