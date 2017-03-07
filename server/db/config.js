@@ -32,6 +32,7 @@ module.exports = function(db) {
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,\
       username VARCHAR(31) NOT NULL UNIQUE,\
       password VARCHAR(17) NOT NULL,\
+      salt VARCHAR(17),\
       timestamp TIMESTAMP\
       );');
   })

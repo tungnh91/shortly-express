@@ -5,22 +5,27 @@ var utils = require('../lib/utility');
 
 module.exports = {
 
-  GET: function(callback){
+  GET: function(callback) {
     var queryString = 'SELECT * FROM users';
-    db.query(queryString, function(err, results){
+    db.query(queryString, function(err, results) {
       callback(err, results);
     });
   },
 
-  POST: function(params, callback){
+  POST: function(params, callback) {
+    console.log(" is this the problem???? tell me john ====>  0  <====");
+    var salt = utils.generateSalt();
+    console.log('(((((((((((((())))))))))))))',salt);
     var queryString = 'INSERT IGNORE INTO users SET ?';
-    var temp = utils.randomizePassword(params.password);
+    console.log('******************************', params);
+    var temp = utils.randomizePassword(params.password, salt);
     var newParams = {
       username: params.username,
-      password: temp
-    }
-    console.log("this is newParams ===================>  ", newParams, "\n");
-    db.query(queryString, newParams, function(err, results){
+      password: temp,
+      salt: salt
+    };
+    console.log('this is newParams ===================>  ', newParams, '\n');
+    db.query(queryString, newParams, function(err, results) {
       callback(err, results);
     });
   }

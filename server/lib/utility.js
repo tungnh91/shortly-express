@@ -25,11 +25,16 @@ exports.isValidUrl = function(url) {
 //   console.log('this is genRandomString================>>>>>>>>> <<<<<<<', length);
 //   console.log("console logging: ====>>>>>>>>",crypto.randomBytes(Math.ceil(length / 2)), 'type ooooooof', typeof crypto.randomBytes(Math.ceil(length / 2)) );
 //   return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
-// };
-
-exports.randomizePassword = function(str) {
+// }
+exports.generateSalt = function () {
+  console.log(" is this the problem???? tell me john ====>  1  <====");
+    return crypto.randomBytes(16).toString('hex');
+}
+var s = exports.generateSalt();
+console.log('this is S', s);
+exports.randomizePassword = function(str, salt) {
   console.log("why does it not work????/");
-  var hash = crypto.createHash('md5')
+  var hash = crypto.createHmac('sha256', salt)
                    .update(str)
                    .digest('hex');
   // return randomized Password
