@@ -4,7 +4,7 @@ var path = require('path');
 var util = require('./lib/utility');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
-var cookieParser = require('../server/middleware/cookieParser.js')
+var cookieParser = require('../server/middleware/cookieParser.js');
 var sessionParser = require('../server/middleware/sessionParser.js');
 var Users = require('./models/user');
 var Links = require('./models/link');
@@ -12,7 +12,7 @@ var Sessions = require('./models/session');
 var Click = require('./models/click');
 
 var app = express();
-app.use(cookieParser);
+//app.use(cookieParser);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
