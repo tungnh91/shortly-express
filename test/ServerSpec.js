@@ -56,13 +56,14 @@ describe('', function() {
     /**************************************************************************************/
     /* TODO: If you create a new MySQL tables, add it to the tablenames collection below. */
     /**************************************************************************************/
-    var tablenames = ['links', 'clicks', 'users'];
+    var tablenames = ['links', 'clicks', 'users', 'sessions'];
 
     db.connect(function(err) {
       if (err) { return done(err); }
       /* Empties the db table before each test so that multiple tests
        * (or repeated runs of the tests) won't screw each other up: */
       clearDB(db, tablenames, function() {
+
         server = app.listen(port, done);
       });
     });
@@ -148,7 +149,7 @@ describe('', function() {
         var queryString = 'SELECT * FROM users where username = "Samantha"';
         db.query(queryString, function(err, rows) {
           if (err) { done(err); }
-          var user = rows[0];
+          var user = rows [0];
           expect(user).to.exist;
           expect(user.username).to.equal('Samantha');
           done();
@@ -217,7 +218,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Account Login:', function() {
+  describe('Account Login:', function() {
 
     beforeEach(function(done) {
       var options = {
@@ -286,7 +287,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Sessions Schema:', function() {
+  describe('Sessions Schema:', function() {
     it('contains a sessions table', function(done) {
       var queryString = 'SELECT * FROM sessions';
       db.query(queryString, function(err, results) {

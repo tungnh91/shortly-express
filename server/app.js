@@ -86,19 +86,42 @@ function(req, res, next) {
 /************************************************************/
 // Write your authentication routes here
 /************************************************************/
+
 app.post('/signup', function(req, res) {
   Users.POST(req.body, function(err, data) {
     if (err) {
-      console.log("this is the error case!!!!! ", err);
+      // console.log("this is the error case!!!!! ", err);
       res.writeHead(303, {location: '/signup'});
       res.send();
     } else {
-      console.log("this is the success case!!!!! ", data);
+      // console.log("this is the success case!!!!! ", data);
       res.writeHead(201, {location: '/'});
       res.send();
     }
   });
 });
+
+
+app.post('/login', function(req, res){
+  Users.GET(req.body, function(err, data, length) {
+    if (err) {
+      console.log("this is the error case!!!!! ", err);
+      res.writeHead(303, {location: '/login'});
+      res.send();
+    } else {
+      //console.log("this is the success case!!!!! ", data);
+      if (length === 0) {
+        res.writeHead(303, {location: '/login'});
+        res.send();
+      } else {
+        res.writeHead(201, {location: '/'});
+        res.send();
+      }
+    }
+  });
+
+
+})
 
 
 /************************************************************/
