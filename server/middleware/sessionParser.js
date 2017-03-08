@@ -27,7 +27,8 @@ var createSession = function(req, res, next) {
     var hash = util.randomizePassword (agent, salt);
     req.session = { hash : hash };
 
-    res.cookies['shortlyid'] = { value: 2};
+    res.cookies['shortlyid'] = { value: 2 };
+
     // check hash
     //compare against db
       // if match, skip login
