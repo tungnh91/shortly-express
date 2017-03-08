@@ -1,9 +1,9 @@
 var express = require('express');
-var sessions = require('../models/sessions')
+var sessions = require('../models/session');
 var app = express();
 var parseCookies = function(req, res, next) {
   //var shortlyID = [];
-  console.log(req);
+  //console.log(req);
   if (req.headers.cookie) {
     var arr =  req.headers.cookie.split('; ');
     for (var i=0; i< arr.length; i++) {
@@ -15,6 +15,7 @@ var parseCookies = function(req, res, next) {
     }
   } else {
 
+    sessions.POST();
   }
 
   next();

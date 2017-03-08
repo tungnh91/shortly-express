@@ -35,3 +35,6 @@ exports.randomizePassword = function(str, salt) {
   // console.log("llllllllllllll", hash);
   return hash;
 };
+
+
+// compare Hash

@@ -13,7 +13,6 @@ module.exports = {
     db.query(queryUser, function(err, results) {
       // console.log('errrrrr(((((((((((((())))))))))))))', err, results);
       if (err) {
-        console.log('this is the route we are taking(((((((((((())))))))))))', results);
         callback(err, null);
       } else {
         if (results.length === 0) {

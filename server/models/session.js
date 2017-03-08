@@ -5,17 +5,17 @@ var util = require('../lib/utility');
 
 module.exports = {
 
-    GET: function(params, callback) {
+  GET: function(params, callback) {
 
-    },
+  },
 
-    POST: function(params, callback) {
-      if (params === undefined) {
-        var salt = utils.generateSalt();
-        var queryString = '';
-        db.query(queryString)
-      }
+  POST: function(params, callback) {
+    if (params === undefined) {
+      var salt = util.generateSalt();
+      var queryString = '';
+      db.query(queryString);
     }
+  }
 
 
 };
