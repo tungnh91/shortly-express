@@ -28,8 +28,8 @@ exports.generateSalt = function () {
 
 exports.randomizePassword = function(str, salt) {
   // console.log("why does it not work????/");
-  var hash = crypto.createHmac('sha256', salt)
-                   .update(str)
+  var hash = crypto.createHash('sha1')
+                   .update(str + salt)
                    .digest('hex');
   // return randomized Password
   // console.log("llllllllllllll", hash);
