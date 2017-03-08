@@ -38,3 +38,7 @@ exports.randomizePassword = function(str, salt) {
 
 
 // compare Hash
+exports.compareHash = function (attempted, stored, salt) {
+  var attempt = this.randomizePassword(attempted, salt);
+  return attempt === stored;
+};

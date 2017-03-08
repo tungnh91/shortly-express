@@ -42,7 +42,8 @@ module.exports = function(db) {
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,\
       user_id INT,\
       hash VARCHAR(255) NOT NULL,\
-      timestamp TIMESTAMP\
+      timestamp TIMESTAMP,\
+      salt VARCHAR(255)\
       );');
   })
 
